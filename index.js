@@ -11,7 +11,6 @@ const io = new Server(httpServer, {
     origin: process.env.ORIGIN_DOMAIN
   }
 });
-
 let activeUsers = []
 
 io.on("connection", (socket) => {
