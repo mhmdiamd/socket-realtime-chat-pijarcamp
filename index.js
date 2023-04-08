@@ -6,13 +6,11 @@ import cors from 'cors'
 
 dotenv.config()
 const app = express();
-app.use(cors({
-  origin: process.env.ORIGIN_DOMAIN,
-}))
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
     origin: process.env.ORIGIN_DOMAIN,
+    credentials: true
   }
 });
 let activeUsers = []
