@@ -9,9 +9,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: [process.env.ORIGIN_DOMAIN],
-    methods: "GET, POST, DELETE, PUT, PATCH",
-    credentials: true
+    origin: "*",
   }
 });
 let activeUsers = []
