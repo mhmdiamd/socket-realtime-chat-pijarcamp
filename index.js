@@ -1,15 +1,16 @@
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import dotenv from 'dotenv'
 import cors from 'cors'
+import dotenv from 'dotenv'
 
 dotenv.config()
 const app = express();
+app.use(cors())
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "*",
+    origin: process.env.ORIGIN_DOMAIN,
   }
 });
 let activeUsers = []
