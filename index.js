@@ -3,6 +3,7 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import dotenv from 'dotenv'
 import xss from 'xss-clean'
+import cors from 'cors'
 import helmet from 'helmet'
 
 dotenv.config()
@@ -75,8 +76,6 @@ io.on("connection", (socket) => {
     io.emit('get-users', activeUsers)
   })
 });
-
-
 
 httpServer.listen(3000, () => {
   console.log(`server running on port 3000`)
