@@ -7,6 +7,9 @@ import helmet from 'helmet'
 
 dotenv.config()
 const app = express();
+app.use(helmet())
+app.use(cors())
+app.use(xss())
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
@@ -14,9 +17,6 @@ const io = new Server(httpServer, {
   }
 });
 
-app.use(helmet())
-app.use(cors())
-app.use(xss())
 
 let activeUsers = []
 
