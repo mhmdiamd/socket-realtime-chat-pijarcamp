@@ -1,18 +1,22 @@
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import cors from 'cors'
 import dotenv from 'dotenv'
+import xss from 'xss-clean'
 
 dotenv.config()
 const app = express();
-app.use(cors())
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.ORIGIN_DOMAIN,
+    origin: [`${process.env.ORIGIN_DOMAIN}`],
   }
 });
+
+app.use(helmet())
+app.use(cors())
+app.use(xss())
+
 let activeUsers = []
 
 io.on("connection", (socket) => {
